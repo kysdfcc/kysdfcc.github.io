@@ -26,11 +26,13 @@
 <meta property="og:site_name" content="若能描绘生命的话">
 <meta property="og:description" content="1. 简介 本文设计了一种工频逆变器系统，设计功率200W，效率90%，输入电压为 48V 直流，输出电压为 24V 50Hz 交流电。逆变器通过 24&#x2F;220V 工频变压器并入电网。系统控制核心采用德州仪器（TI）C2000 系列的 TMS320F280025 数字信号处理器，实现逆变器的驱动控制、并网同步以及相关保护功能。 2. 参数设计 设计功率：P &#x3D; 500W 交流电周期">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/Inverter_ISO.svg">
 <meta property="article:published_time" content="2025-09-11T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-12T06:12:35.629Z">
+<meta property="article:modified_time" content="2025-09-12T06:24:50.442Z">
 <meta property="article:author" content="Chen">
 <meta property="article:tag" content="Inverter">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/Inverter_ISO.svg">
   
   
   
@@ -223,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          445 字
+          453 字
         
       </span>
     
@@ -303,7 +305,7 @@ class="math inline"><em>U</em><sub><em>a</em><em>c</em></sub> = 24<em>V</em>
 <p>输入等效电阻：<span class="math inline">$R_{dc} = \frac{U_{dc}^2}{P /
 η} = \frac{48^2}{200 / 0.9} = 10.37Ω$</span></p>
 <p>输出等效电阻：<span class="math inline">$R_{ac} = \frac{U_{ac}^2}{P}
-= \frac{48^2}{200} = 11.52Ω$</span></p>
+= \frac{24^2}{200} = 2.88Ω$</span></p>
 <p>直流侧输入电容：<span class="math inline">$C_{dc} = \frac{(6 \sim
 8)T}{2R_{dc}} = \frac{(6 \sim 8)\times0.02}{2 \times 10.37} = 5787 \sim
 7716 μF$</span></p>
@@ -333,6 +335,11 @@ class="math inline"><em>C</em> = 4.7<em>μ</em><em>F</em></span></p>
 <p>截止频率：<span class="math inline">$f_c = \frac{1}{2\pi\sqrt{LC}} =
 \frac{1}{2\pi\sqrt{330 \times 10^{-6} \times 4.7 \times 10^{-6}}} =
 4041Hz$</span>，满足要求</p>
+<h1 id="电路设计">3. 电路设计</h1>
+<figure>
+<img src="/img/Inverter_ISO.svg" srcset="/img/loading.gif" lazyload alt="电路图" />
+<figcaption aria-hidden="true">电路图</figcaption>
+</figure>
 
                 
               </div>
