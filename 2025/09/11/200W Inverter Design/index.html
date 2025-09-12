@@ -27,8 +27,10 @@
 <meta property="og:description" content="1. 简介 本文设计了一种工频逆变器系统，设计功率200W，效率90%，输入电压为 48V 直流，输出电压为 24V 50Hz 交流电。逆变器通过 24&#x2F;220V 工频变压器并入电网。系统控制核心采用德州仪器（TI）C2000 系列的 TMS320F280025 数字信号处理器，实现逆变器的驱动控制、并网同步以及相关保护功能。 2. 参数设计 设计功率：P &#x3D; 500W 交流电周期">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/Inverter_ISO.svg">
+<meta property="og:image" content="http://example.com/img/AMC1301.svg">
+<meta property="og:image" content="http://example.com/img/AMC1301_S.svg">
 <meta property="article:published_time" content="2025-09-11T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-12T06:24:50.442Z">
+<meta property="article:modified_time" content="2025-09-12T06:55:32.224Z">
 <meta property="article:author" content="Chen">
 <meta property="article:tag" content="Inverter">
 <meta name="twitter:card" content="summary_large_image">
@@ -225,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          453 字
+          881 字
         
       </span>
     
@@ -236,7 +238,7 @@
         
         
         
-          4 分钟
+          8 分钟
         
       </span>
     
@@ -337,8 +339,39 @@ class="math inline"><em>C</em> = 4.7<em>μ</em><em>F</em></span></p>
 4041Hz$</span>，满足要求</p>
 <h1 id="电路设计">3. 电路设计</h1>
 <figure>
-<img src="/img/Inverter_ISO.svg" srcset="/img/loading.gif" lazyload alt="电路图" />
-<figcaption aria-hidden="true">电路图</figcaption>
+<img src="/img/Inverter_ISO.svg" srcset="/img/loading.gif" lazyload alt="整体电路图" />
+<figcaption aria-hidden="true">整体电路图</figcaption>
+</figure>
+<h2 id="主电路">主电路</h2>
+<p>主电路采用四颗功率型 NMOS 构成全桥（H
+桥）结构实现功率转换。系统在直流侧设置了 6600 μF
+的滤波电容以降低直流纹波和吸收瞬态能量；在 H 桥输出端配置 LC
+滤波器用于衰减高频开关谐波，随后经过 EMI
+抑制电路以满足电磁兼容要求，最终经 24/220V
+工频变压器并入电网。为提高可靠性与保护能力，直流侧并联 SMBJ48CA 型
+TVS（二极管抑制）器件，用于反接保护与瞬态过电压钳位。</p>
+<h2 id="mosfet驱动">MOSFET驱动</h2>
+<p>采用 EG2132 门极驱动器驱动单个桥臂（高/低侧），控制信号通过 TI 的
+ISO7720D
+数字隔离器隔离后送入驱动器。高侧栅极电源采用自举供电方案，自举电容取
+1µF，用以为高侧驱动提供短时栅极驱动电荷。ISO7720D
+提供两路数字隔离输入，满足 MCU
+与驱动器之间的安全隔离和抗共模干扰要求。</p>
+<h2 id="采样电路">采样电路</h2>
+<p>本设计的交流电压检测部分采用 TI 的隔离运算放大器
+AMC1301。交流电压信号经分压后，差分输入 AMC1301
+进行隔离与放大处理。其输出的差分信号再经过精密运算放大器 OPA365
+进行二次放大，同时完成差分转单端转换，便于后续 ADC
+采样与数字处理。电路图与仿真波形如下所示：其中，红色曲线表示 AMC1301
+的差分输入信号，蓝色曲线表示 AMC1301 的差分输出信号，绿色曲线为 OPA365
+转换后的单端输出信号。</p>
+<figure>
+<img src="/img/AMC1301.svg" srcset="/img/loading.gif" lazyload alt="AMC1301电路图" />
+<figcaption aria-hidden="true">AMC1301电路图</figcaption>
+</figure>
+<figure>
+<img src="/img/AMC1301_S.svg" srcset="/img/loading.gif" lazyload alt="AMC1301仿真结果图" />
+<figcaption aria-hidden="true">AMC1301仿真结果图</figcaption>
 </figure>
 
                 
