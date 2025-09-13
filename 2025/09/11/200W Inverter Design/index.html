@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://example.com/img/AMC1311.svg">
 <meta property="og:image" content="http://example.com/img/AMC1311_S.svg">
 <meta property="article:published_time" content="2025-09-11T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-13T13:58:12.134Z">
+<meta property="article:modified_time" content="2025-09-13T14:39:55.254Z">
 <meta property="article:author" content="Chen">
 <meta property="article:tag" content="Inverter">
 <meta name="twitter:card" content="summary_large_image">
@@ -303,9 +303,9 @@ class="math inline"><em>U</em><sub><em>d</em><em>c</em></sub> = 48<em>V</em>
 <p>输出电压有效值：<span
 class="math inline"><em>U</em><sub><em>a</em><em>c</em></sub> = 24<em>V</em></span></p>
 <p>输入电流：<span class="math inline">$I_{in} = \frac{P}{U_{dc}/η} =
-3.75A$</span></p>
+\frac{200}{48/0.9} = 3.75A$</span></p>
 <p>输出电流有效值：<span class="math inline">$I_{o} = \frac{P}{U_{ac}} =
-8.33A$</span></p>
+\frac{200}{24} = 8.33A$</span></p>
 <p>输入等效电阻：<span class="math inline">$R_{dc} = \frac{U_{dc}^2}{P /
 η} = \frac{48^2}{200 / 0.9} = 10.37Ω$</span></p>
 <p>输出等效电阻：<span class="math inline">$R_{ac} = \frac{U_{ac}^2}{P}
@@ -317,7 +317,8 @@ class="math inline"><em>U</em><sub><em>a</em><em>c</em></sub> = 24<em>V</em>
 \frac{\sqrt{2} \times P}{U_{ac}} = \frac{\sqrt{2} \times 200}{24} =
 11.79A$</span></p>
 <p>允许最大脉动电流：<span class="math inline">$ΔI_{max} = 20\% \times
-\sqrt{2} \times I_{o} = 20\% \times 8.33 = 2.36A$</span></p>
+\sqrt{2} \times I_{o} = 20\% \times \sqrt{2} \times 8.33 =
+2.36A$</span></p>
 <p>滤波电感最大值：<span class="math inline">$L \leq \frac{5 \% \times
 U_{ac}}{2 \pi f \times I_{o}} = \frac{5\% \times 24}{2 \pi \times 50
 \times 8.33} = 458.55μH$</span></p>
@@ -356,9 +357,7 @@ TVS（二极管抑制）器件，用于反接保护与瞬态过电压钳位。</
 <p>采用 EG2132 门极驱动器驱动单个桥臂（高/低侧），控制信号通过 TI 的
 ISO7720D
 数字隔离器隔离后送入驱动器。高侧栅极电源采用自举供电方案，自举电容取
-1µF，用以为高侧驱动提供短时栅极驱动电荷。ISO7720D
-提供两路数字隔离输入，满足 MCU
-与驱动器之间的安全隔离和抗共模干扰要求。</p>
+1µF，用以为高侧驱动提供短时栅极驱动电荷。</p>
 <h2 id="采样电路">采样电路</h2>
 <h3 id="交流电压采样">交流电压采样</h3>
 <p>交流电压采样部分采用 TI 的隔离运算放大器
