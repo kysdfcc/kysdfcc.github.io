@@ -29,8 +29,10 @@
 <meta property="og:image" content="http://example.com/img/Inverter_ISO.svg">
 <meta property="og:image" content="http://example.com/img/AMC1301.svg">
 <meta property="og:image" content="http://example.com/img/AMC1301_S.svg">
+<meta property="og:image" content="http://example.com/img/AMC1311.svg">
+<meta property="og:image" content="http://example.com/img/AMC1311_S.svg">
 <meta property="article:published_time" content="2025-09-11T04:00:00.000Z">
-<meta property="article:modified_time" content="2025-09-12T06:55:32.224Z">
+<meta property="article:modified_time" content="2025-09-13T13:58:12.134Z">
 <meta property="article:author" content="Chen">
 <meta property="article:tag" content="Inverter">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          881 字
+          1k 字
         
       </span>
     
@@ -238,7 +240,7 @@
         
         
         
-          8 分钟
+          9 分钟
         
       </span>
     
@@ -358,12 +360,14 @@ ISO7720D
 提供两路数字隔离输入，满足 MCU
 与驱动器之间的安全隔离和抗共模干扰要求。</p>
 <h2 id="采样电路">采样电路</h2>
-<p>本设计的交流电压检测部分采用 TI 的隔离运算放大器
+<h3 id="交流电压采样">交流电压采样</h3>
+<p>交流电压采样部分采用 TI 的隔离运算放大器
 AMC1301。交流电压信号经分压后，差分输入 AMC1301
-进行隔离与放大处理。其输出的差分信号再经过精密运算放大器 OPA365
-进行二次放大，同时完成差分转单端转换，便于后续 ADC
-采样与数字处理。电路图与仿真波形如下所示：其中，红色曲线表示 AMC1301
-的差分输入信号，蓝色曲线表示 AMC1301 的差分输出信号，绿色曲线为 OPA365
+进行隔离与放大处理（固定增益：<span
+class="math inline">8.2<em>V</em>/<em>V</em></span>）。其输出的差分信号再经过精密运算放大器
+OPA365 进行二次放大，同时完成差分转单端转换，便于后续 ADC
+采样与数字处理。电路图与仿真波形如下所示：其中，绿色曲线表示 AMC1301
+的差分输入信号，红色曲线表示 AMC1301 的差分输出信号，蓝色曲线为 OPA365
 转换后的单端输出信号。</p>
 <figure>
 <img src="/img/AMC1301.svg" srcset="/img/loading.gif" lazyload alt="AMC1301电路图" />
@@ -372,6 +376,22 @@ AMC1301。交流电压信号经分压后，差分输入 AMC1301
 <figure>
 <img src="/img/AMC1301_S.svg" srcset="/img/loading.gif" lazyload alt="AMC1301仿真结果图" />
 <figcaption aria-hidden="true">AMC1301仿真结果图</figcaption>
+</figure>
+<h3 id="直流电压采样">直流电压采样</h3>
+<p>直流电压采样部分采用 TI 的隔离运算放大器
+AMC1311。直流电压经过分压之后，输入 AMC1311
+进行隔离与放大处理（固定增益：<span
+class="math inline">1<em>V</em>/<em>V</em></span>）。其输出的差分信号再经过精密运算放大器
+OPA365 进行二次放大，同时完成差分转单端转换，便于后续 ADC
+采样与数字处理。电路图与仿真波形如下所示：其中，绿色线表示 AMC1311
+的输入信号，蓝色线为 OPA365 转换后的单端输出信号。</p>
+<figure>
+<img src="/img/AMC1311.svg" srcset="/img/loading.gif" lazyload alt="AMC1311电路图" />
+<figcaption aria-hidden="true">AMC1311电路图</figcaption>
+</figure>
+<figure>
+<img src="/img/AMC1311_S.svg" srcset="/img/loading.gif" lazyload alt="AMC1311仿真结果图" />
+<figcaption aria-hidden="true">AMC1311仿真结果图</figcaption>
 </figure>
 
                 
