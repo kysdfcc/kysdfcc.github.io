@@ -8,7 +8,7 @@
     <link href="/2026/02/17/test/"/>
     <url>/2026/02/17/test/</url>
     
-    <content type="html"><![CDATA[<h1 id="hello-hexo">Hello Hexo</h1><p>Test</p><hr /><h2 id="列表测试">列表测试</h2><ul><li>项目一</li><li>项目二</li><li>项目三</li></ul><ol type="1"><li>第一条</li><li>第二条</li><li>第三条</li></ol><hr /><h2 id="代码块测试">代码块测试</h2><p>```c #include &lt;stdio.h&gt; int main() { printf(“Hello Hexo!\n”);return 0; }</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="hello-hexo">Hello Hexo</h1><p>Test</p><hr /><h2 id="列表测试">列表测试</h2><ul><li>项目一</li><li>项目二</li><li>项目三</li></ul><ol type="1"><li>第一条</li><li>第二条</li><li>第三条</li></ol><hr /><h2 id="代码块测试">代码块测试</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello Hexo!\\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
     
     
     <categories>
