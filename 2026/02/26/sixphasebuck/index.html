@@ -19,23 +19,22 @@
   <meta name="author" content="Chen">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Hello Hexo Test  列表测试  项目一 项目二 项目三   第一条 第二条 第三条   代码块测试 12345#include &lt;stdio.h&gt;int main() &#123;    printf(&quot;Hello Hexo!\n&quot;);    return 0;&#125;">
+    <meta name="description" content="设计要求 系统主要设计参数如下：  开关频率：fSW &#x3D; 4kHz 额定输出功率：P &#x3D; 2.2MW 三相交流输入线电压：UACL &#x3D; 700V 输出电压：Uo &#x3D; 34 ∼ 338V 系统效率：η &#x3D; 0.9   三相不控整流参数计算 空载时直流母线电压取得最大值，当带上负载之后，直流母线电压会下降。直流母线电压Uin的计算公式如下： $$   U_{in} &#x3D; 2.3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo 测试文章">
-<meta property="og:url" content="http://example.com/2026/02/17/test/index.html">
+<meta property="og:title" content="六相交错Buck变换器">
+<meta property="og:url" content="http://example.com/2026/02/26/sixphasebuck/index.html">
 <meta property="og:site_name" content="若能描绘生命的话">
-<meta property="og:description" content="Hello Hexo Test  列表测试  项目一 项目二 项目三   第一条 第二条 第三条   代码块测试 12345#include &lt;stdio.h&gt;int main() &#123;    printf(&quot;Hello Hexo!\n&quot;);    return 0;&#125;">
+<meta property="og:description" content="设计要求 系统主要设计参数如下：  开关频率：fSW &#x3D; 4kHz 额定输出功率：P &#x3D; 2.2MW 三相交流输入线电压：UACL &#x3D; 700V 输出电压：Uo &#x3D; 34 ∼ 338V 系统效率：η &#x3D; 0.9   三相不控整流参数计算 空载时直流母线电压取得最大值，当带上负载之后，直流母线电压会下降。直流母线电压Uin的计算公式如下： $$   U_{in} &#x3D; 2.3">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-02-17T02:00:00.000Z">
-<meta property="article:modified_time" content="2026-02-17T14:57:56.021Z">
+<meta property="article:published_time" content="2026-02-26T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-26T07:40:56.112Z">
 <meta property="article:author" content="Chen">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="Test">
+<meta property="article:tag" content="Buck">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hexo 测试文章 - 若能描绘生命的话</title>
+  <title>六相交错Buck变换器 - 若能描绘生命的话</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hexo 测试文章"></span>
+            <span id="subtitle" data-typed-text="六相交错Buck变换器"></span>
           
         </div>
 
@@ -212,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-02-17 10:00" pubdate>
-          2026年2月17日 上午
+        <time datetime="2026-02-26 10:00" pubdate>
+          2026年2月26日 上午
         </time>
       </span>
     
@@ -224,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          42 字
+          977 字
         
       </span>
     
@@ -235,7 +234,7 @@
         
         
         
-          1 分钟
+          9 分钟
         
       </span>
     
@@ -272,28 +271,166 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hexo 测试文章</h1>
+            <h1 id="seo-header">六相交错Buck变换器</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="hello-hexo">Hello Hexo</h1>
-<p>Test</p>
-<hr />
-<h2 id="列表测试">列表测试</h2>
+                <h1 id="设计要求">设计要求</h1>
+<p>系统主要设计参数如下：</p>
 <ul>
-<li>项目一</li>
-<li>项目二</li>
-<li>项目三</li>
+<li>开关频率：<span
+class="math inline"><em>f</em><sub><em>S</em><em>W</em></sub> = 4<em>k</em><em>H</em><em>z</em></span></li>
+<li>额定输出功率：<span
+class="math inline"><em>P</em> = 2.2<em>M</em><em>W</em></span></li>
+<li>三相交流输入线电压：<span
+class="math inline"><em>U</em><sub><em>A</em><em>C</em><sub><em>L</em></sub></sub> = 700<em>V</em></span></li>
+<li>输出电压：<span
+class="math inline"><em>U</em><sub><em>o</em></sub> = 34 ∼ 338<em>V</em></span></li>
+<li>系统效率：<span class="math inline"><em>η</em> = 0.9</span></li>
 </ul>
-<ol type="1">
-<li>第一条</li>
-<li>第二条</li>
-<li>第三条</li>
-</ol>
 <hr />
-<h2 id="代码块测试">代码块测试</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello Hexo!\n&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1 id="三相不控整流参数计算">三相不控整流参数计算</h1>
+<p>空载时直流母线电压取得最大值，当带上负载之后，直流母线电压会下降。直流母线电压<span
+class="math inline"><em>U</em><sub><em>i</em><em>n</em></sub></span>的计算公式如下：
+<span class="math display">$$
+  U_{in} = 2.34 \sim 2.45 \times \frac{U_{AC\_L}}{\sqrt{3}} = 2.34 \sim
+2.45 \times \frac{700}{\sqrt{3}} = 946 \sim 990\,\mathrm{V}
+$$</span></p>
+<p>输入斩波侧的电流<span
+class="math inline"><em>I</em><sub><em>D</em><em>C</em></sub></span>为：
+<span class="math display">$$
+    I_{DC} = \frac{P/\eta}{U_{in}} = \frac{2.2 \times 10 ^ 6 / 0.9}{946}
+= 2584\,\mathrm{A}
+$$</span></p>
+<hr />
+<h1 id="输入电容">输入电容</h1>
+<p>输入电容<span
+class="math inline"><em>C</em><sub><em>i</em><em>n</em></sub></span>的作用是滤除不控整流产生的六次工频谐波和斩波电路产生的<span
+class="math inline">4 <em>k</em><em>H</em><em>z</em></span>的开关谐波，稳定直流母线电压。输入电容根据如下公式，其中纹波电压<span
+class="math inline"><em>Δ</em><em>U</em></span>按<span
+class="math inline">5<em>V</em></span>算，系统效率按<span
+class="math inline">90%</span>算。</p>
+<p>输出小电压： <span class="math display">$$
+    C_{in} = \frac{(1-D) \times P / \eta}{2 \times U_{in} \times f_{sw}
+\times \Delta U} = \frac{(1 - \frac{34}{946}) \times 256.5 \times 10 ^ 3
+/ 0.9}{2 \times 946 \times 4000 \times 5} = 7.26\,\mathrm{mF}
+$$</span></p>
+<p>输出大电压： <span class="math display">$$
+    C_{in} = \frac{(1-D) \times P / \eta}{2 \times U_{in} \times f_{sw}
+\times \Delta U} = \frac{(1 - \frac{338}{946}) \times 2281.5 \times 10 ^
+3 / 0.9}{2 \times 946 \times 4000 \times 5} = 43\,\mathrm{mF}
+$$</span></p>
+<p>将斩波电路等效为电阻后，可看作输入电容<span
+class="math inline"><em>C</em><sub><em>i</em><em>n</em></sub></span>和<span
+class="math inline"><em>R</em><sub><em>e</em><em>q</em>_<em>c</em><em>h</em><em>o</em><em>p</em><em>p</em><em>e</em><em>r</em></sub></span>并联，传递函数如下，<span
+class="math inline"><em>i</em><sub><em>d</em><em>c</em></sub></span>经过RC低通滤波器后作用在<span
+class="math inline"><em>R</em><sub><em>e</em><em>q</em>_<em>c</em><em>h</em><em>o</em><em>p</em><em>p</em><em>e</em><em>r</em></sub></span>上。
+<span class="math display">$$
+    R_{eq\_chopper} = \frac{U_{in} ^ 2}{P / \eta} = \frac{946 ^ 2}{2.2
+\times 10 ^ 6 / 0.9} = 0.366\,\Omega
+$$</span> <span class="math display">$$
+    G_{s} = \frac{R}{1 + sRC}
+$$</span></p>
+<p>三相不控整流的六次谐波分量限制为<span
+class="math inline">5 <em>V</em></span>，即满足如下关系式： <span
+class="math display">$$
+    0.057 \times I_{DC} \frac{R_{eq\_chopper}}{|1 + j\omega
+R_{eq\_chopper} C_{in}|} &lt; 5
+$$</span> 代入<span
+class="math inline"><em>ω</em> = 2<em>π</em><em>f</em> = 600<em>π</em></span>得，<span
+class="math inline"><em>C</em><sub><em>I</em><em>N</em></sub> &gt; 15.57 mF</span></p>
+<p>综上，电容应在这三个值中选最大，且容值越大越好。选择两个<span
+class="math inline">30 <em>m</em><em>F</em></span>电容并联，即<span
+class="math inline">60 <em>m</em><em>F</em></span>.</p>
+<hr />
+<h1 id="预充电电路">预充电电路</h1>
+<p>预充电阻的阻值主要由允许的最大预充电流决定。当选取预充电阻 <span
+class="math inline"><em>R</em> = 200 <em>Ω</em></span>
+时，初始预充电流约为： <span class="math display">$$
+    I_{\max} = \frac{U_{in}}{R} = \frac{990}{200} = 4.95\,\mathrm{A}
+$$</span></p>
+<p><span
+class="math display"><em>τ</em> = <em>R</em><em>C</em> = 200 × 0.06 = 12 s</span></p>
+<p>通常认为经过约 <span class="math inline">3<em>τ</em></span>
+的时间，母线电压即可上升至最终值的 95% 以上，因此系统预充时间约为：
+<span
+class="math display"><em>t</em><sub><em>p</em><em>r</em><em>e</em></sub> ≈ 3<em>τ</em> ≈ 36 s</span></p>
+<p>初始功率：</p>
+<p><span class="math display">$$
+    P_0 = \frac{U_{in}^2}{R} = \frac{990^2}{200} \approx
+4.9\,\mathrm{kW}
+$$</span></p>
+<p>平均功率：</p>
+<p><span class="math display">$$
+   P_{ave} = \frac{1}{2} \frac{ C_{in} U_{in} ^ 2}{t_{pre}} =
+\frac{1}{2} \frac{0.06 \times 990 ^ 2}{36} = 816.75\,\mathrm{W}
+$$</span></p>
+<hr />
+<h1 id="电感">电感</h1>
+<p>每相电感电流<span
+class="math inline"><em>I</em><sub><em>L</em></sub></span>为1125<span
+class="math inline"> <em>A</em></span>，取电流脉动为<span
+class="math inline">40%</span>，则电流范围是：<span
+class="math inline">900 ∼ 1350 A</span>，Buck电路工作在电流连续模式（CCM），电感<span
+class="math inline"><em>L</em></span>根据如下公式计算：</p>
+<p>输出小电压</p>
+<p><span class="math display">$$
+    L = \frac{U_{in}D(1-D)}{\Delta I_{L} f_{sw}} = \frac{946 \times
+\frac{34}{946} \times (1 - \frac{34}{946})}{0.4 \times 1125 \times 4000}
+= 18.21\,\mu\mathrm{H}
+$$</span></p>
+<p>输出大电压</p>
+<p><span class="math display">$$
+    L = \frac{U_{in}D(1-D)}{\Delta I_{L} f_{sw}} = \frac{946 \times
+\frac{338}{946} \times (1 - \frac{338}{946})}{0.4 \times 1125 \times
+4000} = 120.69\,\mu\mathrm{H}
+$$</span></p>
+<p>电感电流纹波<span
+class="math inline"><em>Δ</em><em>I</em><sub><em>L</em></sub></span>公式如下，假设选取<span
+class="math inline">200 <em>μ</em>H</span>电感。</p>
+<p>小电压纹波：</p>
+<p><span class="math display">$$
+    \Delta I_{L} = \frac{U_{in}}{L f_{sw}}D(1 - D) = \frac{946}{200
+\times 10 ^ {-6} \times 4000} \times \frac{34}{946} (1 - \frac{34}{946})
+= 40.97\,\mathrm{A}
+$$</span></p>
+<p>大电压纹波：</p>
+<p><span class="math display">$$
+    \Delta I_{L} = \frac{U_{in}}{L f_{sw}}D(1 - D) = \frac{946}{200
+\times 10 ^ {-6} \times 4000} \times \frac{338}{946} (1 -
+\frac{338}{946}) = 271.54\,\mathrm{A}
+$$</span></p>
+<hr />
+<h1 id="输出电容">输出电容</h1>
+<p>按照文献《2MW大功率高频斩波器研究与设计》方法：</p>
+<p><span class="math display">$$
+    C_{o} = I_{o} \times \frac{r \times 0.25}{8 \times 0.1 \times f_{sw}
+\times U_{o}} = 6750 \times \frac{0.4 \times 0.25}{8 \times 0.1 \times
+4000 \times 34} = 6204\,\mu\mathrm{F}
+$$</span></p>
+<hr />
+<p>电容计算方法2，取电压纹波<span class="math inline">1%</span>：</p>
+<p><span class="math display">$$
+C_o =
+\frac{D(1-D)U_{in}}
+{8 \Delta U L f_{sw}^2}
+$$</span></p>
+<p>输出小电压：</p>
+<p><span class="math display">$$
+    C_{o} = \frac{D(1-D)U_{in}}{8 \Delta U L f_{sw} ^ 2} = \frac{
+\frac{34}{946} \times (1 - \frac{34}{946}) \times 946 }{8 \times 34
+\times 1 \% \times 200 \times 10 ^{-6} \times 4000 ^ 2} =
+3766\,\mu\mathrm{F}
+$$</span></p>
+<p>输入大电压：</p>
+<p><span class="math display">$$
+    C_{o} = \frac{D(1-D)U_{in}}{8 \Delta U L f_{sw} ^ 2} = \frac{
+\frac{338}{946} \times (1 - \frac{338}{946}) \times 946 }{8 \times 338
+\times 1 \% \times 200 \times 10 ^{-6} \times 4000 ^ 2} =
+2511\,\mu\mathrm{F}
+$$</span></p>
+<hr />
 
                 
               </div>
@@ -312,7 +449,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Demo/" class="category-chain-item">Demo</a>
+  <a href="/categories/Power-Electronics/" class="category-chain-item">Power Electronics</a>
   
   
 
@@ -327,9 +464,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
-      
-        <a href="/tags/Test/" class="print-no-link">#Test</a>
+        <a href="/tags/Buck/" class="print-no-link">#Buck</a>
       
     </div>
   
@@ -341,8 +476,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hexo 测试文章</div>
-      <div>http://example.com/2026/02/17/test/</div>
+      <div>六相交错Buck变换器</div>
+      <div>http://example.com/2026/02/26/sixphasebuck/</div>
     </div>
     <div class="license-meta">
       
@@ -354,7 +489,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年2月17日</div>
+          <div>2026年2月26日</div>
         </div>
       
       
@@ -386,15 +521,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/02/26/sixphasebuck/" title="六相交错Buck变换器">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">六相交错Buck变换器</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2026/02/17/test/" title="Hexo 测试文章">
+                        <span class="hidden-mobile">Hexo 测试文章</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
