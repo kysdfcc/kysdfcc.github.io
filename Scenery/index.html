@@ -19,23 +19,40 @@
   <meta name="author" content="Chen">
   <meta name="keywords" content="">
   
-    <meta name="description" content=".photo-grid {   display: grid;   grid-template-columns: repeat(2, 1fr);   gap: 20px;   padding: 10px 0; } .photo-item {   overflow: hidden;   border-radius: 8px;   box-shadow: 0 2px 12px rg">
+    <meta name="description" content=".photo-gallery {   display: grid;   grid-template-columns: repeat(2, 1fr);   grid-auto-rows: 200px;   gap: 12px;   padding: 10px 0; } .photo-gallery figure {   margin: 0;   overflow: hidden">
 <meta property="og:type" content="website">
 <meta property="og:title" content="照片">
 <meta property="og:url" content="http://example.com/Scenery/index.html">
 <meta property="og:site_name" content="若能描绘生命的话">
-<meta property="og:description" content=".photo-grid {   display: grid;   grid-template-columns: repeat(2, 1fr);   gap: 20px;   padding: 10px 0; } .photo-item {   overflow: hidden;   border-radius: 8px;   box-shadow: 0 2px 12px rg">
+<meta property="og:description" content=".photo-gallery {   display: grid;   grid-template-columns: repeat(2, 1fr);   grid-auto-rows: 200px;   gap: 12px;   padding: 10px 0; } .photo-gallery figure {   margin: 0;   overflow: hidden">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/SONY/DSC05338.JPG">
-<meta property="og:image" content="http://example.com/img/SONY/DSC05465.JPG">
-<meta property="og:image" content="http://example.com/img/SONY/DSC05558.JPG">
-<meta property="og:image" content="http://example.com/img/SONY/DSC05708.JPG">
 <meta property="og:image" content="http://example.com/img/SONY/DSC05388.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05394.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05465.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05472.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05558.JPG">
 <meta property="og:image" content="http://example.com/img/SONY/DSC05569.JPG">
 <meta property="og:image" content="http://example.com/img/SONY/DSC05604.JPG">
 <meta property="og:image" content="http://example.com/img/SONY/DSC05616.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05708.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05756.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05759.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05766.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05816.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05834.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05840.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05897.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05915.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05927.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05937.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05944.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC05954.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC06101.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC06133.JPG">
+<meta property="og:image" content="http://example.com/img/SONY/DSC06182.JPG">
 <meta property="article:published_time" content="2026-02-26T09:08:21.000Z">
-<meta property="article:modified_time" content="2026-05-28T13:45:28.640Z">
+<meta property="article:modified_time" content="2026-05-28T13:50:29.855Z">
 <meta property="article:author" content="Chen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/SONY/DSC05338.JPG">
@@ -243,104 +260,227 @@
 
 <article class="page-content">
   <style>
-.photo-grid {
+.photo-gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-auto-rows: 200px;
+  gap: 12px;
   padding: 10px 0;
 }
-.photo-item {
+.photo-gallery figure {
+  margin: 0;
   overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  position: relative;
+  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: #fff;
+  box-shadow: 0 1px 6px rgba(0,0,0,.08);
 }
-.photo-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+.photo-gallery figure:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.15);
+  z-index: 2;
 }
-.photo-item a {
+.photo-gallery figure.landscape {
+  grid-row: span 1;
+}
+.photo-gallery figure.portrait {
+  grid-row: span 2;
+}
+.photo-gallery a {
   display: block;
-  line-height: 0;
+  height: 100%;
 }
-.photo-item img {
+.photo-gallery img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
   object-fit: cover;
-  aspect-ratio: auto;
+  display: block;
 }
-.photo-caption {
-  padding: 10px 14px;
-  font-size: 13px;
-  color: #888;
+.photo-gallery figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 10px 6px;
+  background: linear-gradient(transparent, rgba(0,0,0,.5));
+  color: #fff;
+  font-size: 12px;
   text-align: center;
-  line-height: 1.5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.photo-gallery figure:hover figcaption {
+  opacity: 1;
 }
 
-@media (min-width: 768px) {
-  .photo-grid {
+@media (min-width: 640px) {
+  .photo-gallery {
     grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
+    gap: 14px;
   }
 }
-
-@media (min-width: 1024px) {
-  .photo-grid {
+@media (min-width: 900px) {
+  .photo-gallery {
     grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 260px;
+    gap: 16px;
   }
 }
 </style>
 <h2>
 2026
 </h2>
-<div class="photo-grid">
-<figure class="photo-item">
-<a href="../img/SONY/DSC05338.JPG" target="_blank"><img src="../img/SONY/DSC05338.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt="DSC05338"></a>
-<figcaption class="photo-caption">
+<div class="photo-gallery">
+<figure class="landscape">
+<a href="../img/SONY/DSC05338.JPG" target="_blank"><img src="../img/SONY/DSC05338.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
 DSC05338
 </figcaption>
 </figure>
-<figure class="photo-item">
-<a href="../img/SONY/DSC05465.JPG" target="_blank"><img src="../img/SONY/DSC05465.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt="DSC05465"></a>
-<figcaption class="photo-caption">
-DSC05465
-</figcaption>
-</figure>
-<figure class="photo-item">
-<a href="../img/SONY/DSC05558.JPG" target="_blank"><img src="../img/SONY/DSC05558.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt="DSC05558"></a>
-<figcaption class="photo-caption">
-DSC05558
-</figcaption>
-</figure>
-<figure class="photo-item">
-<a href="../img/SONY/DSC05708.JPG" target="_blank"><img src="../img/SONY/DSC05708.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt="DSC05708"></a>
-<figcaption class="photo-caption">
-DSC05708
-</figcaption>
-</figure>
-<figure class="photo-item">
-<a href="../img/SONY/DSC05388.JPG" target="_blank"><img src="../img/SONY/DSC05388.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt="DSC05388"></a>
-<figcaption class="photo-caption">
+<figure class="landscape">
+<a href="../img/SONY/DSC05388.JPG" target="_blank"><img src="../img/SONY/DSC05388.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
 DSC05388
 </figcaption>
 </figure>
-<figure class="photo-item">
-<a href="../img/SONY/DSC05569.JPG" target="_blank"><img src="../img/SONY/DSC05569.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt="DSC05569"></a>
-<figcaption class="photo-caption">
+<figure class="portrait">
+<a href="../img/SONY/DSC05394.JPG" target="_blank"><img src="../img/SONY/DSC05394.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05394
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05465.JPG" target="_blank"><img src="../img/SONY/DSC05465.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05465
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05472.JPG" target="_blank"><img src="../img/SONY/DSC05472.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05472
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05558.JPG" target="_blank"><img src="../img/SONY/DSC05558.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05558
+</figcaption>
+</figure>
+<figure class="portrait">
+<a href="../img/SONY/DSC05569.JPG" target="_blank"><img src="../img/SONY/DSC05569.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
 DSC05569
 </figcaption>
 </figure>
-<figure class="photo-item">
-<a href="../img/SONY/DSC05604.JPG" target="_blank"><img src="../img/SONY/DSC05604.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt="DSC05604"></a>
-<figcaption class="photo-caption">
+<figure class="portrait">
+<a href="../img/SONY/DSC05604.JPG" target="_blank"><img src="../img/SONY/DSC05604.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
 DSC05604
 </figcaption>
 </figure>
-<figure class="photo-item">
-<a href="../img/SONY/DSC05616.JPG" target="_blank"><img src="../img/SONY/DSC05616.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt="DSC05616"></a>
-<figcaption class="photo-caption">
+<figure class="portrait">
+<a href="../img/SONY/DSC05616.JPG" target="_blank"><img src="../img/SONY/DSC05616.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
 DSC05616
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05708.JPG" target="_blank"><img src="../img/SONY/DSC05708.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05708
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05756.JPG" target="_blank"><img src="../img/SONY/DSC05756.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05756
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05759.JPG" target="_blank"><img src="../img/SONY/DSC05759.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05759
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05766.JPG" target="_blank"><img src="../img/SONY/DSC05766.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05766
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05816.JPG" target="_blank"><img src="../img/SONY/DSC05816.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05816
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05834.JPG" target="_blank"><img src="../img/SONY/DSC05834.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05834
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05840.JPG" target="_blank"><img src="../img/SONY/DSC05840.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05840
+</figcaption>
+</figure>
+<figure class="portrait">
+<a href="../img/SONY/DSC05897.JPG" target="_blank"><img src="../img/SONY/DSC05897.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05897
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05915.JPG" target="_blank"><img src="../img/SONY/DSC05915.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05915
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05927.JPG" target="_blank"><img src="../img/SONY/DSC05927.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05927
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05937.JPG" target="_blank"><img src="../img/SONY/DSC05937.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05937
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05944.JPG" target="_blank"><img src="../img/SONY/DSC05944.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05944
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC05954.JPG" target="_blank"><img src="../img/SONY/DSC05954.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC05954
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC06101.JPG" target="_blank"><img src="../img/SONY/DSC06101.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC06101
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC06133.JPG" target="_blank"><img src="../img/SONY/DSC06133.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC06133
+</figcaption>
+</figure>
+<figure class="landscape">
+<a href="../img/SONY/DSC06182.JPG" target="_blank"><img src="../img/SONY/DSC06182.JPG" srcset="/img/loading.gif" lazyload loading="lazy" alt=""></a>
+<figcaption>
+DSC06182
 </figcaption>
 </figure>
 </div>
