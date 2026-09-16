@@ -1,0 +1,995 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#8ABBF5">
+  <meta name="author" content="Chen">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="设计要求 系统主要设计参数如下：  开关频率：fSW&#x3D;4kHzf_{SW} &#x3D; 4kHz 额定输出功率：P&#x3D;2.2MWP &#x3D; 2.2MW 三相交流输入线电压：UACL&#x3D;700VU_{AC_L} &#x3D; 700V 输出电压：Uo&#x3D;34∼338VU_o &#x3D; 34 \sim 338V 系统效率：η&#x3D;0.9\eta &#x3D; 0.9   三相不控整流参数计算 空载时直流母线电压取得最大值，当带上负载之后，直流母线电">
+<meta property="og:type" content="article">
+<meta property="og:title" content="六相交错Buck变换器">
+<meta property="og:url" content="https://kysdfcc.github.io/2026/02/26/sixphasebuck/index.html">
+<meta property="og:site_name" content="若能描绘生命的话">
+<meta property="og:description" content="设计要求 系统主要设计参数如下：  开关频率：fSW&#x3D;4kHzf_{SW} &#x3D; 4kHz 额定输出功率：P&#x3D;2.2MWP &#x3D; 2.2MW 三相交流输入线电压：UACL&#x3D;700VU_{AC_L} &#x3D; 700V 输出电压：Uo&#x3D;34∼338VU_o &#x3D; 34 \sim 338V 系统效率：η&#x3D;0.9\eta &#x3D; 0.9   三相不控整流参数计算 空载时直流母线电压取得最大值，当带上负载之后，直流母线电">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-26T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-26T07:40:58.000Z">
+<meta property="article:author" content="Chen">
+<meta property="article:tag" content="Buck">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>六相交错Buck变换器 - 若能描绘生命的话</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kysdfcc.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2025-09-07T00:00:00.000Z","token":null,"api_server":"https://kysdfcc.example.github.io"}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/Scenery/" target="_self">
+                <i class="iconfont icon-image"></i>
+                <span>照片</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/Scenery/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-image"></i>
+                  <span>照片</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/background.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="六相交错Buck变换器"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-02-26 10:00" pubdate>
+          2026年2月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">六相交错Buck变换器</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="设计要求">设计要求</h1>
+<p>系统主要设计参数如下：</p>
+<ul>
+<li>开关频率：<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mrow><mi>S</mi><mi>W</mi></mrow></msub><mo>=</mo><mn>4</mn><mi>k</mi><mi>H</mi><mi>z</mi></mrow><annotation encoding="application/x-tex">f_{SW} = 4kHz</annotation></semantics></math></li>
+<li>额定输出功率：<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mn>2.2</mn><mi>M</mi><mi>W</mi></mrow><annotation encoding="application/x-tex">P = 2.2MW</annotation></semantics></math></li>
+<li>三相交流输入线电压：<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mrow><mi>A</mi><msub><mi>C</mi><mi>L</mi></msub></mrow></msub><mo>=</mo><mn>700</mn><mi>V</mi></mrow><annotation encoding="application/x-tex">U_{AC_L} = 700V</annotation></semantics></math></li>
+<li>输出电压：<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mi>o</mi></msub><mo>=</mo><mn>34</mn><mo>∼</mo><mn>338</mn><mi>V</mi></mrow><annotation encoding="application/x-tex">U_o = 34 \sim 338V</annotation></semantics></math></li>
+<li>系统效率：<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>η</mi><mo>=</mo><mn>0.9</mn></mrow><annotation encoding="application/x-tex">\eta = 0.9</annotation></semantics></math></li>
+</ul>
+<hr />
+<h1 id="三相不控整流参数计算">三相不控整流参数计算</h1>
+<p>空载时直流母线电压取得最大值，当带上负载之后，直流母线电压会下降。直流母线电压<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><annotation encoding="application/x-tex">U_{in}</annotation></semantics></math>的计算公式如下：
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>=</mo><mn>2.34</mn><mo>∼</mo><mn>2.45</mn><mo>×</mo><mfrac><msub><mi>U</mi><mrow><mi>A</mi><mi>C</mi><mi>_</mi><mi>L</mi></mrow></msub><msqrt><mn>3</mn></msqrt></mfrac><mo>=</mo><mn>2.34</mn><mo>∼</mo><mn>2.45</mn><mo>×</mo><mfrac><mn>700</mn><msqrt><mn>3</mn></msqrt></mfrac><mo>=</mo><mn>946</mn><mo>∼</mo><mn>990</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">V</mi></mrow><annotation encoding="application/x-tex">
+  U_{in} = 2.34 \sim 2.45 \times \frac{U_{AC\_L}}{\sqrt{3}} = 2.34 \sim 2.45 \times \frac{700}{\sqrt{3}} = 946 \sim 990\,\mathrm{V}
+</annotation></semantics></math></p>
+<p>输入斩波侧的电流<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>I</mi><mrow><mi>D</mi><mi>C</mi></mrow></msub><annotation encoding="application/x-tex">I_{DC}</annotation></semantics></math>为：
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mrow><mi>D</mi><mi>C</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>P</mi><mi>/</mi><mi>η</mi></mrow><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mfrac><mo>=</mo><mfrac><mrow><mn>2.2</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mi>/</mi><mn>0.9</mn></mrow><mn>946</mn></mfrac><mo>=</mo><mn>2584</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">A</mi></mrow><annotation encoding="application/x-tex">
+    I_{DC} = \frac{P/\eta}{U_{in}} = \frac{2.2 \times 10 ^ 6 / 0.9}{946} = 2584\,\mathrm{A}
+</annotation></semantics></math></p>
+<hr />
+<h1 id="输入电容">输入电容</h1>
+<p>输入电容<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><annotation encoding="application/x-tex">C_{in}</annotation></semantics></math>的作用是滤除不控整流产生的六次工频谐波和斩波电路产生的<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn><mspace width="0.167em"></mspace><mi>k</mi><mi>H</mi><mi>z</mi></mrow><annotation encoding="application/x-tex">4\,kHz</annotation></semantics></math>的开关谐波，稳定直流母线电压。输入电容根据如下公式，其中纹波电压<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">\Delta U</annotation></semantics></math>按<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mi>V</mi></mrow><annotation encoding="application/x-tex">5V</annotation></semantics></math>算，系统效率按<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>90</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">90\%</annotation></semantics></math>算。</p>
+<p>输出小电压：
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mi>P</mi><mi>/</mi><mi>η</mi></mrow><mrow><mn>2</mn><mo>×</mo><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>×</mo><msub><mi>f</mi><mrow><mi>s</mi><mi>w</mi></mrow></msub><mo>×</mo><mi mathvariant="normal">Δ</mi><mi>U</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>34</mn><mn>946</mn></mfrac><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>256.5</mn><mo>×</mo><msup><mn>10</mn><mn>3</mn></msup><mi>/</mi><mn>0.9</mn></mrow><mrow><mn>2</mn><mo>×</mo><mn>946</mn><mo>×</mo><mn>4000</mn><mo>×</mo><mn>5</mn></mrow></mfrac><mo>=</mo><mn>7.26</mn><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">F</mi></mrow></mrow><annotation encoding="application/x-tex">
+    C_{in} = \frac{(1-D) \times P / \eta}{2 \times U_{in} \times f_{sw} \times \Delta U} = \frac{(1 - \frac{34}{946}) \times 256.5 \times 10 ^ 3 / 0.9}{2 \times 946 \times 4000 \times 5} = 7.26\,\mathrm{mF}
+</annotation></semantics></math></p>
+<p>输出大电压：
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mi>P</mi><mi>/</mi><mi>η</mi></mrow><mrow><mn>2</mn><mo>×</mo><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>×</mo><msub><mi>f</mi><mrow><mi>s</mi><mi>w</mi></mrow></msub><mo>×</mo><mi mathvariant="normal">Δ</mi><mi>U</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>338</mn><mn>946</mn></mfrac><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>2281.5</mn><mo>×</mo><msup><mn>10</mn><mn>3</mn></msup><mi>/</mi><mn>0.9</mn></mrow><mrow><mn>2</mn><mo>×</mo><mn>946</mn><mo>×</mo><mn>4000</mn><mo>×</mo><mn>5</mn></mrow></mfrac><mo>=</mo><mn>43</mn><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">F</mi></mrow></mrow><annotation encoding="application/x-tex">
+    C_{in} = \frac{(1-D) \times P / \eta}{2 \times U_{in} \times f_{sw} \times \Delta U} = \frac{(1 - \frac{338}{946}) \times 2281.5 \times 10 ^ 3 / 0.9}{2 \times 946 \times 4000 \times 5} = 43\,\mathrm{mF}
+</annotation></semantics></math></p>
+<p>将斩波电路等效为电阻后，可看作输入电容<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>C</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><annotation encoding="application/x-tex">C_{in}</annotation></semantics></math>和<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mrow><mi>e</mi><mi>q</mi><mi>_</mi><mi>c</mi><mi>h</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>r</mi></mrow></msub><annotation encoding="application/x-tex">R_{eq\_chopper}</annotation></semantics></math>并联，传递函数如下，<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>i</mi><mrow><mi>d</mi><mi>c</mi></mrow></msub><annotation encoding="application/x-tex">i_{dc}</annotation></semantics></math>经过RC低通滤波器后作用在<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>R</mi><mrow><mi>e</mi><mi>q</mi><mi>_</mi><mi>c</mi><mi>h</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>r</mi></mrow></msub><annotation encoding="application/x-tex">R_{eq\_chopper}</annotation></semantics></math>上。
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mrow><mi>e</mi><mi>q</mi><mi>_</mi><mi>c</mi><mi>h</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>r</mi></mrow></msub><mo>=</mo><mfrac><msubsup><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow><mn>2</mn></msubsup><mrow><mi>P</mi><mi>/</mi><mi>η</mi></mrow></mfrac><mo>=</mo><mfrac><msup><mn>946</mn><mn>2</mn></msup><mrow><mn>2.2</mn><mo>×</mo><msup><mn>10</mn><mn>6</mn></msup><mi>/</mi><mn>0.9</mn></mrow></mfrac><mo>=</mo><mn>0.366</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">
+    R_{eq\_chopper} = \frac{U_{in} ^ 2}{P / \eta} = \frac{946 ^ 2}{2.2 \times 10 ^ 6 / 0.9} = 0.366\,\Omega
+</annotation></semantics></math>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>G</mi><mi>s</mi></msub><mo>=</mo><mfrac><mi>R</mi><mrow><mn>1</mn><mo>+</mo><mi>s</mi><mi>R</mi><mi>C</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+    G_{s} = \frac{R}{1 + sRC}
+</annotation></semantics></math></p>
+<p>三相不控整流的六次谐波分量限制为<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>5</mn><mspace width="0.167em"></mspace><mi>V</mi></mrow><annotation encoding="application/x-tex">5\,V</annotation></semantics></math>，即满足如下关系式：
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.057</mn><mo>×</mo><msub><mi>I</mi><mrow><mi>D</mi><mi>C</mi></mrow></msub><mfrac><msub><mi>R</mi><mrow><mi>e</mi><mi>q</mi><mi>_</mi><mi>c</mi><mi>h</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>r</mi></mrow></msub><mrow><mo stretchy="false" form="prefix">|</mo><mn>1</mn><mo>+</mo><mi>j</mi><mi>ω</mi><msub><mi>R</mi><mrow><mi>e</mi><mi>q</mi><mi>_</mi><mi>c</mi><mi>h</mi><mi>o</mi><mi>p</mi><mi>p</mi><mi>e</mi><mi>r</mi></mrow></msub><msub><mi>C</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo stretchy="false" form="prefix">|</mo></mrow></mfrac><mo>&lt;</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">
+    0.057 \times I_{DC} \frac{R_{eq\_chopper}}{|1 + j\omega R_{eq\_chopper} C_{in}|} &lt; 5 
+</annotation></semantics></math>
+代入<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ω</mi><mo>=</mo><mn>2</mn><mi>π</mi><mi>f</mi><mo>=</mo><mn>600</mn><mi>π</mi></mrow><annotation encoding="application/x-tex">\omega = 2\pi f = 600\pi</annotation></semantics></math>得，<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mrow><mi>I</mi><mi>N</mi></mrow></msub><mo>&gt;</mo><mn>15.57</mn><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">F</mi></mrow></mrow><annotation encoding="application/x-tex">C_{IN} &gt; 15.57\,\mathrm{mF}</annotation></semantics></math></p>
+<p>综上，电容应在这三个值中选最大，且容值越大越好。选择两个<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>30</mn><mspace width="0.167em"></mspace><mi>m</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">30\,mF</annotation></semantics></math>电容并联，即<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>60</mn><mspace width="0.167em"></mspace><mi>m</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">60\,mF</annotation></semantics></math>.</p>
+<hr />
+<h1 id="预充电电路">预充电电路</h1>
+<p>预充电阻的阻值主要由允许的最大预充电流决定。当选取预充电阻
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi><mo>=</mo><mn>200</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">R = 200\,\Omega</annotation></semantics></math>
+时，初始预充电流约为：
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi mathvariant="normal">max</mi></msub><mo>=</mo><mfrac><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mi>R</mi></mfrac><mo>=</mo><mfrac><mn>990</mn><mn>200</mn></mfrac><mo>=</mo><mn>4.95</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">A</mi></mrow><annotation encoding="application/x-tex">
+    I_{\max} = \frac{U_{in}}{R} = \frac{990}{200} = 4.95\,\mathrm{A}
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mi>R</mi><mi>C</mi><mo>=</mo><mn>200</mn><mo>×</mo><mn>0.06</mn><mo>=</mo><mn>12</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">
+    \tau = RC = 200 \times 0.06 = 12\,\mathrm{s}
+</annotation></semantics></math></p>
+<p>通常认为经过约
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mi>τ</mi></mrow><annotation encoding="application/x-tex">3\tau</annotation></semantics></math>
+的时间，母线电压即可上升至最终值的 95% 以上，因此系统预充时间约为：
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi></mrow></msub><mo>≈</mo><mn>3</mn><mi>τ</mi><mo>≈</mo><mn>36</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">s</mi></mrow><annotation encoding="application/x-tex">
+    t_{pre} \approx 3\tau \approx 36\,\mathrm{s}
+</annotation></semantics></math></p>
+<p>初始功率：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mn>0</mn></msub><mo>=</mo><mfrac><msubsup><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow><mn>2</mn></msubsup><mi>R</mi></mfrac><mo>=</mo><mfrac><msup><mn>990</mn><mn>2</mn></msup><mn>200</mn></mfrac><mo>≈</mo><mn>4.9</mn><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">k</mi><mi mathvariant="normal">W</mi></mrow></mrow><annotation encoding="application/x-tex">
+    P_0 = \frac{U_{in}^2}{R} = \frac{990^2}{200} \approx 4.9\,\mathrm{kW}
+</annotation></semantics></math></p>
+<p>平均功率：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mrow><mi>a</mi><mi>v</mi><mi>e</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mfrac><mrow><msub><mi>C</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><msubsup><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow><mn>2</mn></msubsup></mrow><msub><mi>t</mi><mrow><mi>p</mi><mi>r</mi><mi>e</mi></mrow></msub></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mfrac><mrow><mn>0.06</mn><mo>×</mo><msup><mn>990</mn><mn>2</mn></msup></mrow><mn>36</mn></mfrac><mo>=</mo><mn>816.75</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">W</mi></mrow><annotation encoding="application/x-tex">
+   P_{ave} = \frac{1}{2} \frac{ C_{in} U_{in} ^ 2}{t_{pre}} = \frac{1}{2} \frac{0.06 \times 990 ^ 2}{36} = 816.75\,\mathrm{W}
+</annotation></semantics></math></p>
+<hr />
+<h1 id="电感">电感</h1>
+<p>每相电感电流<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>I</mi><mi>L</mi></msub><annotation encoding="application/x-tex">I_{L}</annotation></semantics></math>为1125<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mspace width="0.167em"></mspace><mi>A</mi></mrow><annotation encoding="application/x-tex">\,A</annotation></semantics></math>，取电流脉动为<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>40</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">40\%</annotation></semantics></math>，则电流范围是：<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>900</mn><mo>∼</mo><mn>1350</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">A</mi></mrow><annotation encoding="application/x-tex">900 \sim 1350\,\mathrm{A}</annotation></semantics></math>，Buck电路工作在电流连续模式（CCM），电感<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>L</mi><annotation encoding="application/x-tex">L</annotation></semantics></math>根据如下公式计算：</p>
+<p>输出小电压</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mfrac><mrow><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi mathvariant="normal">Δ</mi><msub><mi>I</mi><mi>L</mi></msub><msub><mi>f</mi><mrow><mi>s</mi><mi>w</mi></mrow></msub></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>946</mn><mo>×</mo><mfrac><mn>34</mn><mn>946</mn></mfrac><mo>×</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>34</mn><mn>946</mn></mfrac><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>0.4</mn><mo>×</mo><mn>1125</mn><mo>×</mo><mn>4000</mn></mrow></mfrac><mo>=</mo><mn>18.21</mn><mspace width="0.167em"></mspace><mi>μ</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">
+    L = \frac{U_{in}D(1-D)}{\Delta I_{L} f_{sw}} = \frac{946 \times \frac{34}{946} \times (1 - \frac{34}{946})}{0.4 \times 1125 \times 4000} = 18.21\,\mu\mathrm{H}
+</annotation></semantics></math></p>
+<p>输出大电压</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mo>=</mo><mfrac><mrow><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mi mathvariant="normal">Δ</mi><msub><mi>I</mi><mi>L</mi></msub><msub><mi>f</mi><mrow><mi>s</mi><mi>w</mi></mrow></msub></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>946</mn><mo>×</mo><mfrac><mn>338</mn><mn>946</mn></mfrac><mo>×</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>338</mn><mn>946</mn></mfrac><mo stretchy="false" form="postfix">)</mo></mrow><mrow><mn>0.4</mn><mo>×</mo><mn>1125</mn><mo>×</mo><mn>4000</mn></mrow></mfrac><mo>=</mo><mn>120.69</mn><mspace width="0.167em"></mspace><mi>μ</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">
+    L = \frac{U_{in}D(1-D)}{\Delta I_{L} f_{sw}} = \frac{946 \times \frac{338}{946} \times (1 - \frac{338}{946})}{0.4 \times 1125 \times 4000} = 120.69\,\mu\mathrm{H}
+</annotation></semantics></math></p>
+<p>电感电流纹波<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msub><mi>I</mi><mi>L</mi></msub></mrow><annotation encoding="application/x-tex">\Delta I_{L}</annotation></semantics></math>公式如下，假设选取<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mspace width="0.167em"></mspace><mi>μ</mi><mi mathvariant="normal">H</mi></mrow><annotation encoding="application/x-tex">200\,\mu\mathrm{H}</annotation></semantics></math>电感。</p>
+<p>小电压纹波：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msub><mi>I</mi><mi>L</mi></msub><mo>=</mo><mfrac><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mrow><mi>L</mi><msub><mi>f</mi><mrow><mi>s</mi><mi>w</mi></mrow></msub></mrow></mfrac><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>946</mn><mrow><mn>200</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mo>×</mo><mn>4000</mn></mrow></mfrac><mo>×</mo><mfrac><mn>34</mn><mn>946</mn></mfrac><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>34</mn><mn>946</mn></mfrac><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>40.97</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">A</mi></mrow><annotation encoding="application/x-tex">
+    \Delta I_{L} = \frac{U_{in}}{L f_{sw}}D(1 - D) = \frac{946}{200 \times 10 ^ {-6} \times 4000} \times \frac{34}{946} (1 - \frac{34}{946}) = 40.97\,\mathrm{A}
+</annotation></semantics></math></p>
+<p>大电压纹波：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><msub><mi>I</mi><mi>L</mi></msub><mo>=</mo><mfrac><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mrow><mi>L</mi><msub><mi>f</mi><mrow><mi>s</mi><mi>w</mi></mrow></msub></mrow></mfrac><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mfrac><mn>946</mn><mrow><mn>200</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mo>×</mo><mn>4000</mn></mrow></mfrac><mo>×</mo><mfrac><mn>338</mn><mn>946</mn></mfrac><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>338</mn><mn>946</mn></mfrac><mo stretchy="false" form="postfix">)</mo><mo>=</mo><mn>271.54</mn><mspace width="0.167em"></mspace><mi mathvariant="normal">A</mi></mrow><annotation encoding="application/x-tex">
+    \Delta I_{L} = \frac{U_{in}}{L f_{sw}}D(1 - D) = \frac{946}{200 \times 10 ^ {-6} \times 4000} \times \frac{338}{946} (1 - \frac{338}{946}) = 271.54\,\mathrm{A}
+</annotation></semantics></math></p>
+<hr />
+<h1 id="输出电容">输出电容</h1>
+<p>按照文献《2MW大功率高频斩波器研究与设计》方法：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>o</mi></msub><mo>=</mo><msub><mi>I</mi><mi>o</mi></msub><mo>×</mo><mfrac><mrow><mi>r</mi><mo>×</mo><mn>0.25</mn></mrow><mrow><mn>8</mn><mo>×</mo><mn>0.1</mn><mo>×</mo><msub><mi>f</mi><mrow><mi>s</mi><mi>w</mi></mrow></msub><mo>×</mo><msub><mi>U</mi><mi>o</mi></msub></mrow></mfrac><mo>=</mo><mn>6750</mn><mo>×</mo><mfrac><mrow><mn>0.4</mn><mo>×</mo><mn>0.25</mn></mrow><mrow><mn>8</mn><mo>×</mo><mn>0.1</mn><mo>×</mo><mn>4000</mn><mo>×</mo><mn>34</mn></mrow></mfrac><mo>=</mo><mn>6204</mn><mspace width="0.167em"></mspace><mi>μ</mi><mi mathvariant="normal">F</mi></mrow><annotation encoding="application/x-tex">
+    C_{o} = I_{o} \times \frac{r \times 0.25}{8 \times 0.1 \times f_{sw} \times U_{o}} = 6750 \times \frac{0.4 \times 0.25}{8 \times 0.1 \times 4000 \times 34} = 6204\,\mu\mathrm{F}
+</annotation></semantics></math></p>
+<hr />
+<p>电容计算方法2，取电压纹波<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>%</mi></mrow><annotation encoding="application/x-tex">1\%</annotation></semantics></math>：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>o</mi></msub><mo>=</mo><mfrac><mrow><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mrow><mrow><mn>8</mn><mi mathvariant="normal">Δ</mi><mi>U</mi><mi>L</mi><msubsup><mi>f</mi><mrow><mi>s</mi><mi>w</mi></mrow><mn>2</mn></msubsup></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+C_o =
+\frac{D(1-D)U_{in}}
+{8 \Delta U L f_{sw}^2}
+</annotation></semantics></math></p>
+<p>输出小电压：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>o</mi></msub><mo>=</mo><mfrac><mrow><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mrow><mrow><mn>8</mn><mi mathvariant="normal">Δ</mi><mi>U</mi><mi>L</mi><msubsup><mi>f</mi><mrow><mi>s</mi><mi>w</mi></mrow><mn>2</mn></msubsup></mrow></mfrac><mo>=</mo><mfrac><mrow><mfrac><mn>34</mn><mn>946</mn></mfrac><mo>×</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>34</mn><mn>946</mn></mfrac><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>946</mn></mrow><mrow><mn>8</mn><mo>×</mo><mn>34</mn><mo>×</mo><mn>1</mn><mi>%</mi><mo>×</mo><mn>200</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mo>×</mo><msup><mn>4000</mn><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mn>3766</mn><mspace width="0.167em"></mspace><mi>μ</mi><mi mathvariant="normal">F</mi></mrow><annotation encoding="application/x-tex">
+    C_{o} = \frac{D(1-D)U_{in}}{8 \Delta U L f_{sw} ^ 2} = \frac{ \frac{34}{946} \times (1 - \frac{34}{946}) \times 946 }{8 \times 34 \times 1 \% \times 200 \times 10 ^{-6} \times 4000 ^ 2} = 3766\,\mu\mathrm{F}
+</annotation></semantics></math></p>
+<p>输入大电压：</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>o</mi></msub><mo>=</mo><mfrac><mrow><mi>D</mi><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mi>D</mi><mo stretchy="false" form="postfix">)</mo><msub><mi>U</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mrow><mrow><mn>8</mn><mi mathvariant="normal">Δ</mi><mi>U</mi><mi>L</mi><msubsup><mi>f</mi><mrow><mi>s</mi><mi>w</mi></mrow><mn>2</mn></msubsup></mrow></mfrac><mo>=</mo><mfrac><mrow><mfrac><mn>338</mn><mn>946</mn></mfrac><mo>×</mo><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>−</mo><mfrac><mn>338</mn><mn>946</mn></mfrac><mo stretchy="false" form="postfix">)</mo><mo>×</mo><mn>946</mn></mrow><mrow><mn>8</mn><mo>×</mo><mn>338</mn><mo>×</mo><mn>1</mn><mi>%</mi><mo>×</mo><mn>200</mn><mo>×</mo><msup><mn>10</mn><mrow><mi>−</mi><mn>6</mn></mrow></msup><mo>×</mo><msup><mn>4000</mn><mn>2</mn></msup></mrow></mfrac><mo>=</mo><mn>2511</mn><mspace width="0.167em"></mspace><mi>μ</mi><mi mathvariant="normal">F</mi></mrow><annotation encoding="application/x-tex">
+    C_{o} = \frac{D(1-D)U_{in}}{8 \Delta U L f_{sw} ^ 2} = \frac{ \frac{338}{946} \times (1 - \frac{338}{946}) \times 946 }{8 \times 338 \times 1 \% \times 200 \times 10 ^{-6} \times 4000 ^ 2} = 2511\,\mu\mathrm{F}
+</annotation></semantics></math></p>
+<hr />
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Power-Electronics/" class="category-chain-item">Power Electronics</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Buck/" class="print-no-link">#Buck</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>六相交错Buck变换器</div>
+      <div>https://kysdfcc.github.io/2026/02/26/sixphasebuck/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Chen</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年2月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/02/17/test/" title="Hexo 测试文章">
+                        <span class="hidden-mobile">Hexo 测试文章</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
