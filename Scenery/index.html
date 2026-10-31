@@ -19,12 +19,12 @@
   <meta name="author" content="Chen">
   <meta name="keywords" content="">
   
-    <meta name="description" content=".photo-gallery {   column-count: 2;   column-gap: 12px;   margin-top: 1rem; }  .photo-gallery figure {   position: relative;   break-inside: avoid;   margin: 0 0 12px;   overflow: hidden;   border-ra">
+    <meta name="description" content=".photo-gallery {   column-count: 1;   column-gap: 12px;   margin-top: 1rem; }  .photo-gallery figure {   position: relative;   break-inside: avoid;   min-width: 0;   margin: 0 0 12px;   overflow: hid">
 <meta property="og:type" content="website">
 <meta property="og:title" content="照片">
 <meta property="og:url" content="https://kysdfcc.github.io/Scenery/index.html">
 <meta property="og:site_name" content="若能描绘生命的话">
-<meta property="og:description" content=".photo-gallery {   column-count: 2;   column-gap: 12px;   margin-top: 1rem; }  .photo-gallery figure {   position: relative;   break-inside: avoid;   margin: 0 0 12px;   overflow: hidden;   border-ra">
+<meta property="og:description" content=".photo-gallery {   column-count: 1;   column-gap: 12px;   margin-top: 1rem; }  .photo-gallery figure {   position: relative;   break-inside: avoid;   min-width: 0;   margin: 0 0 12px;   overflow: hid">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kysdfcc.github.io/img/postcard/DSC05338.JPG">
 <meta property="og:image" content="https://kysdfcc.github.io/img/postcard/DSC05394.JPG">
@@ -64,7 +64,7 @@
 <meta property="og:image" content="https://kysdfcc.github.io/img/postcard/IMG_0087.jpg">
 <meta property="og:image" content="https://kysdfcc.github.io/img/postcard/IMG_0373.jpg">
 <meta property="article:published_time" content="2026-02-26T09:08:21.000Z">
-<meta property="article:modified_time" content="2026-10-31T04:49:57.439Z">
+<meta property="article:modified_time" content="2026-10-31T14:55:53.259Z">
 <meta property="article:author" content="Chen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://kysdfcc.github.io/img/postcard/DSC05338.JPG">
@@ -392,7 +392,7 @@
 <article class="page-content">
   <style>
 .photo-gallery {
-  column-count: 2;
+  column-count: 1;
   column-gap: 12px;
   margin-top: 1rem;
 }
@@ -400,6 +400,7 @@
 .photo-gallery figure {
   position: relative;
   break-inside: avoid;
+  min-width: 0;
   margin: 0 0 12px;
   overflow: hidden;
   border-radius: 6px;
@@ -455,9 +456,9 @@
   opacity: 1;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 760px) {
   .photo-gallery {
-    column-count: 3;
+    column-count: 2;
     column-gap: 14px;
   }
 
@@ -468,7 +469,6 @@
 
 @media (min-width: 960px) {
   .photo-gallery {
-    column-count: 4;
     column-gap: 16px;
   }
 
